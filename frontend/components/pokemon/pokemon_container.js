@@ -1,14 +1,18 @@
-import {connect} from 'react-redux';
-import {selectAllPokemon} from '../../reducers/selectors';
-import {requestAllPokemon} from '../../actions/pokemon_actions';
-import PokemonIndex from './pokemon_index.jsx'
+import { connect } from 'react-redux';
 
-const mSP = (state) => ({
+import PokemonIndex from './pokemon_index';
+import { requestAllPokemon } from '../../actions/pokemon_actions';
+import { selectAllPokemon } from '../../reducers/selectors';
+
+const mapStateToProps = state => ({
   pokemon: selectAllPokemon(state)
 });
 
-const mDP = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   requestAllPokemon: () => dispatch(requestAllPokemon())
 });
 
-export default connect(mSP, mDP)(PokemonIndex)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PokemonIndex);
